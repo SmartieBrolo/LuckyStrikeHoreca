@@ -11,10 +11,10 @@
 <div class="container">
     <header class="header">
         <h4 class="headerTitle">Baan 4</h4>
-        <h4 class="headerTitle">Alwin</h4>
+        <h4 class="headerTitle">Danny en Walter</h4>
         
         <div class="contentContainer">
-            <h3 id="orderButton" onclick="submitOrder()">Ga naar order</h3>
+            <h3 id="orderButton" onclick="submitOrder()">Bestelling</h3>
             {{-- <h3 class="contentTitle">Lucky Strike</h3>
             <img src="{{ asset('img/luckystrike.png') }}" alt="image" class="contentImage"> --}}
         </div>
@@ -23,6 +23,5 @@
         @yield('content')
     </main>
 </div>
-
 </body>
 </html>

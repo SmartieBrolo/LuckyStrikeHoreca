@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\CateringItem;
-use Illuminate\Http\Request;
 
 class CateringController extends Controller
 {
     public function getCateringItems()
     {
+        // Fetch horeca items from the database
         $cateringItems = CateringItem::all();
-
+        
         // Group items by category
         $groupedItems = $cateringItems->groupBy('category');
 
-        return response()->json($groupedItems);
+        return view('horeca')->with('cateringItems', $groupedItems);
     }
 }

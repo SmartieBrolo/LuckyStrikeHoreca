@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CateringController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +24,8 @@ Route::get('/header', function () {
     return view('header');
 });
 
-Route::get('/horeca', function () {
-    return view('horeca');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/horeca', [CateringController::class, 'getCateringItems']);
 
-Route::get('/catering-items', [CateringController::class, 'getCateringItems']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
