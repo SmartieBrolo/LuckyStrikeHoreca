@@ -16,4 +16,16 @@ class CateringController extends Controller
 
         return view('horeca')->with('cateringItems', $groupedItems);
     }
+
+
+    public function getCateringItemsTest()
+    {
+        // Fetch horeca items from the database
+        $cateringItems = CateringItem::all();
+        
+        // Group items by category
+        $groupedItems = $cateringItems->groupBy('category');
+
+        return view('test')->with('cateringItems', $groupedItems);
+    }
 }

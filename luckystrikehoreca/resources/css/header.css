@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background-image: url('../../public/img/BowlingBarBlur.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+  }
+
+  /* CSS for the header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: #333;
+  color: white;
+  padding: 0 20px;
+}
+
+/* Styles for the individual header text blocks */
+.header-left,
+.header-right,
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+/* Adjust the specific styles for each block if needed */
+.header-left {
+  text-align: left;
+}
+
+.header-right {
+  text-align: right;
+}
+  
+  h1 {
+    font-size: 1.5em;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  /* Center the table and button */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* Adjust margin top as needed */
+  }
