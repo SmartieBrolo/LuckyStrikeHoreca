@@ -34,10 +34,12 @@ header {
 /* Adjust the specific styles for each block if needed */
 .header-left {
   text-align: left;
+  margin-left: 20px;
 }
 
 .header-right {
   text-align: right;
+  margin-right: 20px;
 }
   
   h1 {

@@ -1,8 +1,196 @@
 // Fonts
 @import url('https://fonts.bunny.net/css?family=Nunito');
 
+@font-face {
+    font-family: 'HelveticaRounded';
+    src: url('../../public/fonts/Helvetica\ Rounded\ Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../../public/fonts/Helvetica.woff') format('woff');
+}
+
 // Variables
 @import 'variables';
 
+// pages
+@import 'customerHeader';
+@import 'form';
+@import 'login';
+
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// basics
+:root {
+    --primaryText: darkslategray;
+    --secondaryText: #fff;
+    --lightYellow:  #fdfde0;
+    --yellow: #d2ae39;
+    --red: #dc2222;
+    --dark: #1b1b19;
+}
+
+* {
+    margin: 0;
+    font-family: 'HelveticaRounded';
+    color: var(--primary-text);
+}
+
+h1 {
+    font-size: 50px !important;
+}
+
+h2 {
+    font-size: 40px !important;
+}
+
+h3 {
+    font-size: 30px !important;
+}
+
+h4 {
+    font-size: 20px !important;
+}
+
+p {
+    font-size: 16px;
+    font-family: 'Helvetica';
+}
+
+a {
+    font-size: 18px;
+    text-decoration: none !important;
+    color: var(--primary-text) !important;
+}
+
+.primaryButton {
+    background-color: var(--yellow);
+    border: none;
+    padding: 8px 20px 8px 20px;
+    font-weight: bold;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.secondaryButton {
+    background-color: var(--lightYellow);
+    border: none;
+    padding: 8px 20px 8px 20px;
+    font-weight: bold;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.redButton {
+    background-color: var(--red);
+    border: none;
+    padding: 8px 20px 8px 20px;
+    font-weight: bold;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.darkButton {
+    background-color: var(--dark);
+    border: none;
+    padding: 8px 20px 8px 20px;
+    font-weight: bold;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.lightButton {
+    background-color: #fff;
+    border: none;
+    padding: 8px 20px 8px 20px;
+    font-weight: bold;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.filter {
+    background-color: rgba(0, 0, 0, 0.521);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero {
+    width: 100%;
+    height: 40vh;
+    background-image: url('https://images.pexels.com/photos/7429786/pexels-photo-7429786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    
+    h1 {
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+}
+
+// media
+@media only screen and (max-width: 1300px) {
+    .landingFilter {
+        .cta {
+            h1 {
+                font-size: 50px !important;
+            }
+        }        
+    }
+
+    .reservationContainer {
+        .left {
+            width: 100%;
+        }
+        .right {
+            width: 100%;
+            .availableLane {
+                width: 100%;
+            }
+        }
+    }
+
+    input[type="checkbox"] + label {
+        width: 100%;
+    }
+
+    .customerContainer {
+        width: 100%;
+        margin: 0;
+
+        td::before {
+            content: attr(data-label);
+            font-family: "HelveticaRounded";
+        }
+
+        table {
+            width: 100%;
+        }
+        td {
+            display: flex;
+            justify-content: space-between;
+        }
+        tr:nth-child(odd) {
+            text-align: right;
+        }
+
+        td:last-child {
+            margin-bottom: 40px;
+        }
+
+        thead {
+            display: none;
+        }
+    }
+
+    #app {
+        .checkbox-wrapper-6 {
+            width: unset !important;
+        }
+    }
+
+}

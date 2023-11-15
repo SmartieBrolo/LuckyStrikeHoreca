@@ -17,7 +17,7 @@
   <header>
     <div class="header-left">Baan 4</div>
     <div class="header-center">Donny en Walter</div>
-    <div class="header-right"><a href="/horeca">Terug</a></div>
+    <div class="header-right"><a href="/home">Terug</a></div>
   </header>
   
   <main>
@@ -159,7 +159,7 @@ document.getElementById('redirectButton').addEventListener('click', function(eve
 
   var customAlert = document.getElementById('customAlert');
   customAlert.style.display = 'none';
-  window.location.href = '/horeca';
+  window.location.href = '/home';
 });
   </script>
 </body>
