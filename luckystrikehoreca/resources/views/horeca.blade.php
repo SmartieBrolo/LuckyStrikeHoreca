@@ -17,9 +17,12 @@
 <div class="cateringContainer">
     <div id="cateringItems">
         @foreach(array_chunk($cateringItems->all(), 3, true) as $chunk)
-            @foreach($chunk as $category->name => $items)
+            @foreach($chunk as $category => $items)
                 <div class="category">
-                    <h2>{{ $category }}</h2>
+                    @php
+                        $categoryObject = json_decode($category);
+                    @endphp
+                    <h2>{{ $categoryObject->name }}</h2>
                     @foreach($items as $item)
                         <div class="item">
                             <div>
