@@ -9,12 +9,15 @@
 <body>
   <header>
     <div class="header-left">Baan 4</div>
-    <div class="header-center">Alwin</div>
+    <div class="header-center">Donny en Walter</div>
     <div class="header-right"><a href="/order">Naar bestelling</a></div>
   </header>
   
   <main>
 <div class="cateringContainer">
+    @if(isset($message))
+    <p>{{ $message }}</p>
+@endif
     <div id="cateringItems">
         @foreach(array_chunk($cateringItems->all(), 3, true) as $chunk)
             @foreach($chunk as $category => $items)
