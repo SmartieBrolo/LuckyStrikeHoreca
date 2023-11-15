@@ -15,12 +15,9 @@
   
   <main>
 <div class="cateringContainer">
-    @if(isset($message))
-    <p>{{ $message }}</p>
-@endif
     <div id="cateringItems">
         @foreach(array_chunk($cateringItems->all(), 3, true) as $chunk)
-            @foreach($chunk as $category => $items)
+            @foreach($chunk as $category->name => $items)
                 <div class="category">
                     <h2>{{ $category }}</h2>
                     @foreach($items as $item)
