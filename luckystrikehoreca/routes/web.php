@@ -27,5 +27,10 @@ Route::get('/header', function () {
 Auth::routes();
 
 Route::get('/horeca', [CateringController::class, 'getCateringItems']);
+Route::get('/test', [CateringController::class, 'getCateringItemsTest']);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [CateringController::class, 'getCateringItems'])->name('home');
+
+Route::get('/order', function () {
+    return view('order');
+});

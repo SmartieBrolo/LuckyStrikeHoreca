@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class CateringItem extends Model
 {
     protected $table = 'catering_item';
-    protected $fillable = ['id', 'name', 'price', 'category'];
+    protected $fillable = [
+        'name',
+        'price',
+        'category',
+    ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -1,0 +1,78 @@
+/* Add some basic styling for better visualization */
+.cateringContainer {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+    background: transparent;
+}
+
+#cateringItems {
+    color: #fff;
+    margin: 0px 0px 0px 40px;
+    padding: 15px 0px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category {
+    border: 1px solid #3f3f3f;
+    padding: 10px;
+    background-color: #292929c0;
+    flex: 0 0 calc(33.333% - 20px); /* Three items per row */
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* Style for the plus and minus buttons */
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-controls button {
+    cursor: pointer;
+    background-color: #D2AE39;
+    color: rgb(255, 255, 255);
+    border: none;
+    margin: 5px;
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+}
+
+/* Style to adjust the width of the input fields */
+.quantity-controls input {
+    width: 25px;
+    margin: 5px;
+    height: 25px;
+    text-align: center;
+}
+
+/* Style for the "Order Now" button */
+#orderButton {
+    cursor: pointer;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+@media (max-width: 1000px) {
+    .category {
+        float: left;
+        flex: 1 1 calc(50% - 20px); /* Two items per row */
+    }
+}
+
+@media (max-width: 650px) {
+    .category {
+        flex: 1 100%; /* Single item per row */
+    }
+}
