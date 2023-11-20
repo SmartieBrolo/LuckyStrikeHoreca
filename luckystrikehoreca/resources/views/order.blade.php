@@ -15,9 +15,9 @@
         </div>
       </div>
   <header>
-    <div class="header-left">Baan 4</div>
-    <div class="header-center">Donny en Walter</div>
-    <div class="header-right"><a href="/home">Terug</a></div>
+    <div class="header-left"><a href="/home" id="backButton">Terug</a></div>
+    <div class="header-center">Donny en Walter - Baan 4</div>
+    <div class="header-right"><a id="orderButton">Verzend bestelling</a></div>
   </header>
   
   <main>
@@ -135,11 +135,6 @@
             <tr>
                 <th colspan="3" class="noBottomLine">Totaal:</th>
                 <th class="price noBottomLine">€80.50</th>
-            </tr>
-            <tr>
-                <th colspan="4" class="noBottomLine"><form action="">
-                  <button id="orderButton">Verzend bestelling</button>
-                </form></th>
             </tr>
         </tbody>
     </table>

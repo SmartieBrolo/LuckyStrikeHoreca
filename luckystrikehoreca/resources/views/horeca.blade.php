@@ -8,9 +8,9 @@
 </head>
 <body>
   <header>
-    <div class="header-left">Baan 4</div>
-    <div class="header-center">Donny en Walter</div>
-    <div class="header-right"><a href="/order">Naar bestelling</a></div>
+    <div class="header-left"></div>
+    <div class="header-center">Donny en Walter - Baan 4</div>
+    <div class="header-right"><a href="/order">Naar bestelling(<span id="count">0</span>)</a></div>
   </header>
   
   <main>
@@ -71,6 +71,36 @@ function submitOrder() {
     // console.log('Order Data:', orderData);
     alert('Order Submitted!');
 }
+
+// Function to update the total count based on item quantities
+function updateTotalCount() {
+    let total = 0;
+    const inputs = document.querySelectorAll('.quantity-controls input');
+
+    inputs.forEach(input => {
+        total += parseInt(input.value);
+    });
+
+    document.getElementById('count').innerText = total;
+}
+
+// Function to handle quantity changes and update total count
+function handleQuantityChange() {
+    updateTotalCount();
+}
+
+// Event listeners to update count when input values change
+const quantityInputs = document.querySelectorAll('.quantity-controls input');
+quantityInputs.forEach(input => {
+    input.addEventListener('input', handleQuantityChange);
+});
+
+// Event listeners to update count when plus/minus buttons are clicked
+const quantityControls = document.querySelectorAll('.quantity-controls button');
+quantityControls.forEach(button => {
+    button.addEventListener('click', handleQuantityChange);
+});
+
 
 
 

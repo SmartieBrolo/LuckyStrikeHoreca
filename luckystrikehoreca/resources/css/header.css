@@ -53,6 +53,10 @@ header {
     padding: 10px;
     border-radius: 5px;
   }
+
+  #backButton {
+    background-color: none;
+  }
   
   /* Center the table and button */
   main {
