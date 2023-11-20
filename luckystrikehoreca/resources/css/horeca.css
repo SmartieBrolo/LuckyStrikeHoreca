@@ -43,15 +43,15 @@
     border: none;
     margin: 5px;
     border-radius: 5px;
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
 }
 
 /* Style to adjust the width of the input fields */
 .quantity-controls input {
-    width: 25px;
+    width: 50px;
     margin: 5px;
-    height: 25px;
+    height: 50px;
     text-align: center;
 }
 
@@ -64,7 +64,7 @@
     border-radius: 5px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 2000px) {
     .category {
         float: left;
         flex: 1 1 calc(50% - 20px); /* Two items per row */
