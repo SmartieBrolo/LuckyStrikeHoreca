@@ -49,6 +49,9 @@ header {
   a {
     text-decoration: none;
     color: #fff;
+    background-color: #D2AE39;
+    padding: 10px;
+    border-radius: 5px;
   }
   
   /* Center the table and button */
