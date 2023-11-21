@@ -11,6 +11,18 @@
     color: #fff;
   }
 
+  main {
+    margin-top: 70px;
+  }
+
+  /* Sticky header class */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
   /* CSS for the header */
 header {
   display: flex;
@@ -21,6 +33,8 @@ header {
   background-color: #333;
   color: white;
   padding: 0 20px;
+  position: absolute;
+  top: 0;
 }
 
 /* Styles for the individual header text blocks */
@@ -49,6 +63,13 @@ header {
   a {
     text-decoration: none;
     color: #fff;
+    background-color: #D2AE39;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  #backButton {
+    background-color: none;
   }
   
   /* Center the table and button */
