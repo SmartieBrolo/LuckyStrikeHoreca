@@ -9,7 +9,7 @@
 <body>
   <header class="sticky">
     <div class="header-left"></div>
-    <div class="header-center">Donny en Walter - Baan {{$laneId}}</div>
+    <div class="header-center">{{ $user->name }} - Baan {{ $laneId }}</div>
     <div class="header-right"><a href="/order">Naar bestelling(<span id="count">0</span>)</a></div>
   </header>
   
