@@ -7,7 +7,7 @@
   @vite(['resources/css/horeca.css', 'resources/css/header.css'])
 </head>
 <body>
-  <header>
+  <header class="sticky">
     <div class="header-left"></div>
     <div class="header-center">Donny en Walter - Baan {{$laneId}}</div>
     <div class="header-right"><a href="/order">Naar bestelling(<span id="count">0</span>)</a></div>
