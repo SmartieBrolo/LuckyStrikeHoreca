@@ -8,7 +8,7 @@
 </head>
 <body>
   <header>
-    <div class="header-left">Baan 4</div>
+    <div class="header-left">Baan {{$laneId}}</div>
     <div class="header-center">Donny en Walter</div>
     <div class="header-right"><a href="/order">Naar bestelling</a></div>
   </header>
