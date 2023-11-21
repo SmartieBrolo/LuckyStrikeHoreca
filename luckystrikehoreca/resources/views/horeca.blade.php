@@ -8,9 +8,9 @@
 </head>
 <body>
   <header>
-    <div class="header-left">Baan {{$laneId}}</div>
-    <div class="header-center">Donny en Walter</div>
-    <div class="header-right"><a href="/order">Naar bestelling</a></div>
+    <div class="header-left"></div>
+    <div class="header-center">Donny en Walter - Baan {{$laneId}}</div>
+    <div class="header-right"><a href="/order">Naar bestelling(<span id="count">0</span>) </a></div>
   </header>
   
   <main>
