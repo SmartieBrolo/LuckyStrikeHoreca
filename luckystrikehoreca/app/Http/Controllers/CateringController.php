@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CateringItem;
+use App\Models\Lane;
 use App\Models\LoginUserConnect;
+use App\Models\Reservation;
 
 class CateringController extends Controller
 {
@@ -20,8 +22,9 @@ class CateringController extends Controller
         ->first();
         // Group items by category
         $groupedItems = $cateringItems->groupBy('category');
+        $reservation = $this->getCurrentUser($uniqueIdentifier);
 
-        return view('horeca')->with('cateringItems', $groupedItems)->with('laneId',$userConnect->unique_identifier);
+        return view('horeca')->with('cateringItems', $groupedItems)->with('laneId',$userConnect->unique_identifier)->with('reservation',$reservation);
     }
 
 
@@ -34,5 +37,17 @@ class CateringController extends Controller
         $groupedItems = $cateringItems->groupBy('category');
 
         return view('test')->with('cateringItems', $groupedItems);
+    }
+
+    private function getCurrentUser($id){
+        $lane = Lane::find($id);
+        $currentTime = now();
+
+        $reservations = $lane->reservations()
+            ->where('begin_time', '<=', $currentTime)
+            ->where('end_time', '>=', $currentTime)
+            ->get();
+
+        return $reservations;
     }
 }
