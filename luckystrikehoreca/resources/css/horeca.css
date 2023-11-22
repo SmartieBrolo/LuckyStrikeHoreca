@@ -31,12 +31,12 @@
     align-items: center;
 }
 
-.quantity-controls {
+.quantityControls {
     display: flex;
     align-items: center;
 }
 
-.quantity-controls button {
+.quantityControls button {
     cursor: pointer;
     background-color: #D2AE39;
     color: rgb(255, 255, 255);
@@ -48,7 +48,7 @@
 }
 
 /* Style to adjust the width of the input fields */
-.quantity-controls input {
+.quantityControls input {
     width: 50px;
     margin: 5px;
     height: 50px;

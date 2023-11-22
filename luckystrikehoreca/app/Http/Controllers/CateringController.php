@@ -40,18 +40,6 @@ class CateringController extends Controller
         return view('horeca')->with('cateringItems', $groupedItems)->with('laneId',$userConnect->unique_identifier)->with('user',$user);
     }
 
-
-    public function getCateringItemsTest()
-    {
-        // Fetch horeca items from the database
-        $cateringItems = CateringItem::all();
-        
-        // Group items by category
-        $groupedItems = $cateringItems->groupBy('category');
-
-        return view('test')->with('cateringItems', $groupedItems);
-    }
-
     private function getCurrentUser($id)
     {
         $lane = Lane::find($id);

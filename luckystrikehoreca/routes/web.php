@@ -15,27 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+// Route::get('/', function () {
+//     return view('horeca');
+// });
 
-Route::get('/header', function () {
-    return view('header');
-});
 
-Auth::routes();
-
-// routes/web.php
 
 Route::middleware(['assign.unique.identifier'])->group(function () {
-    Route::get('/horeca', [CateringController::class, 'getCateringItems']);
+    Route::get('/', [CateringController::class, 'getCateringItems']);
     Route::get('/order', [CateringController::class, 'getOrderWithUser']);
 });
 
-Route::get('/test', [CateringController::class, 'getCateringItemsTest']);
-
-Route::get('/home', [CateringController::class, 'getCateringItems'])->name('home');
-
-// Route::get('/order', function () {
-//     return view('order');
-// });
