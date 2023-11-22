@@ -29,13 +29,13 @@ Auth::routes();
 
 Route::middleware(['assign.unique.identifier'])->group(function () {
     Route::get('/horeca', [CateringController::class, 'getCateringItems']);
+    Route::get('/order', [CateringController::class, 'getOrderWithUser']);
 });
-
 
 Route::get('/test', [CateringController::class, 'getCateringItemsTest']);
 
 Route::get('/home', [CateringController::class, 'getCateringItems'])->name('home');
 
-Route::get('/order', function () {
-    return view('order');
-});
+// Route::get('/order', function () {
+//     return view('order');
+// });
