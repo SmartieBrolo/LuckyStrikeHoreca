@@ -16,7 +16,7 @@
       </div>
   <header class="sticky">
     <div class="header-left"><a href="/home" id="backButton">Terug</a></div>
-    <div class="header-center">Donny en Walter - Baan 4</div>
+    <div class="header-center">{{ $user->name }} - Baan {{ $laneId }}</div>
     <div class="header-right"><a id="orderButton">Verzend bestelling</a></div>
   </header>
   
