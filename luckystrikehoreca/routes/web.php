@@ -26,7 +26,13 @@ Route::get('/header', function () {
 
 Auth::routes();
 
-Route::get('/horeca', [CateringController::class, 'getCateringItems']);
+// routes/web.php
+
+Route::middleware(['assign.unique.identifier'])->group(function () {
+    Route::get('/horeca', [CateringController::class, 'getCateringItems']);
+});
+
+
 Route::get('/test', [CateringController::class, 'getCateringItemsTest']);
 
 Route::get('/home', [CateringController::class, 'getCateringItems'])->name('home');

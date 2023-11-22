@@ -6,6 +6,10 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+    protected $routeMiddleware = [
+        // ...
+        'assign.unique.identifier' => \App\Http\Middleware\AssignUniqueIdentifier::class,
+    ];
     /**
      * The application's global HTTP middleware stack.
      *
