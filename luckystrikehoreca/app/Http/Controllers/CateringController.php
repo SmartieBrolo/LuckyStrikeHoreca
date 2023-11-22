@@ -63,4 +63,26 @@ class CateringController extends Controller
         return $reservation;
     }
 
+    public function getOrderWithUser()
+    {
+        // Fetch the unique_identifier from the store you get the second you enter the site
+        $uniqueIdentifier = session('unique_identifier');
+        
+        // Get the database object with this number and the date of today
+        $userConnect = LoginUserConnect::where('unique_identifier', $uniqueIdentifier)
+        ->orderBy('date', 'desc')
+        ->first();
+
+        $reservation = $this->getCurrentUser($uniqueIdentifier);
+
+        if (!$reservation) {
+            $user = new User();
+            $user->name = 'Empty';
+        }else{
+            $user = $reservation->user;
+        }
+
+        return view('order')->with('laneId',$userConnect->unique_identifier)->with('user',$user);
+    }
+
 }
