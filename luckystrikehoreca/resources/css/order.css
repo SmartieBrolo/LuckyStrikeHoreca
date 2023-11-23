@@ -41,7 +41,7 @@
 }
 
 /* Styles for the custom alert */
-.custom-alert {
+.customAlert {
   display: none;
   position: fixed;
   top: 40%;
@@ -55,7 +55,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-.alert-content {
+.alertContent {
   text-align: center;
   margin-bottom: 10px;
 }

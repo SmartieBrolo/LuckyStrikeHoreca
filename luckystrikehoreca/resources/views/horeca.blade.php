@@ -8,9 +8,9 @@
 </head>
 <body>
   <header class="sticky">
-    <div class="header-left"></div>
-    <div class="header-center">{{ $user->name }} - Baan {{ $laneId }}</div>
-    <div class="header-right"><a onclick="submitOrder()">Naar bestelling(<span id="count">0</span>)</a></div>
+    <div class="headerLeft"></div>
+    <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
+    <div class="headerRight"><a onclick="submitOrder()">Naar bestelling(<span id="count">0</span>)</a></div>
   </header>
   
   <main>
@@ -31,7 +31,7 @@
                     <div>
                         <span>{{ $item->name }} €{{ sprintf("%.2f", $item->price) }}</span>
                     </div>
-                    <div class="quantity-controls">
+                    <div class="quantityControls">
                         <button onclick="decreaseQuantity('{{ $item->id }}')">-</button>
                         <input type="number" id="{{ $item->id }}" name="{{ $item->name }}" value="0" min="0">
                         <button onclick="increaseQuantity('{{ $item->id }}')">+</button>
@@ -51,6 +51,7 @@ const orderData = {};
 function increaseQuantity(itemId) {
   const inputField = document.getElementById(itemId);
   inputField.value = parseInt(inputField.value, 10) + 1;
+
   const item = document.querySelector(`.item[data-item-id="${itemId}"]`);
   const itemName = item.dataset.itemName;
   const itemPrice = parseFloat(item.dataset.itemPrice);
@@ -63,6 +64,7 @@ function decreaseQuantity(itemId) {
   const currentValue = parseInt(inputField.value, 10);
   if (currentValue > 0) {
     inputField.value = currentValue - 1;
+    
     const item = document.getElementByClassName(`item`);
     const itemName = item.dataset.itemName;
     const itemPrice = parseFloat(item.dataset.itemPrice);
@@ -83,14 +85,12 @@ function submitOrder() {
   const orderJSON = JSON.stringify(orderData);
   localStorage.setItem('orderData', orderJSON);
   window.location.href = '/order';
-  //   alert('Order Submitted!');
 }
-
 
 // Update count based on quantity
 function updateTotalCount() {
   let total = 0;
-  const inputs = document.querySelectorAll('.quantity-controls input');
+  const inputs = document.querySelectorAll('.quantityControls input');
 
   inputs.forEach(input => {
     total += parseInt(input.value);
@@ -105,13 +105,13 @@ function handleQuantityChange() {
 }
 
 // Event listeners to update count when input values change
-const quantityInputs = document.querySelectorAll('.quantity-controls input');
+const quantityInputs = document.querySelectorAll('.quantityControls input');
 quantityInputs.forEach(input => {
   input.addEventListener('input', handleQuantityChange);
 });
 
 // Event listeners to update count when plus/minus buttons are clicked
-const quantityControls = document.querySelectorAll('.quantity-controls button');
+const quantityControls = document.querySelectorAll('.quantityControls button');
 quantityControls.forEach(button => {
   button.addEventListener('click', handleQuantityChange);
 });
