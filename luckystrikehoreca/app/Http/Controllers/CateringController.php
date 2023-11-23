@@ -53,6 +53,8 @@ class CateringController extends Controller
 
     public function getOrderWithUser()
     {
+        // Set the time zone to 'Europe/Amsterdam'
+        date_default_timezone_set('Europe/Amsterdam');
         // Fetch the unique_identifier from the store you get the second you enter the site
         $uniqueIdentifier = session('unique_identifier');
         
