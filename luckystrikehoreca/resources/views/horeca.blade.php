@@ -9,14 +9,19 @@
 <body>
   <header class="sticky">
     <div class="headerLeft"></div>
-    <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
-    <div class="headerRight"><a onclick="submitOrder()">Naar bestelling(<span id="count">0</span>)</a></div>
+    <div class="headerCenter">{{ $user->name }} - Baan {{ $userConnect->unique_identifier }}</div>
+    <div class="headerRight">
+      <form action="{{ route('order') }}" method="POST">
+        @csrf
+        <input type="hidden" name="orderData" value="{{ json_encode($orderData) }}">
+        <button id="orderButton" type="submit">Naar bestelling(<span id="count">0</span>)</button>
+      </form>
   </header>
   
   <main>
     <div class="cateringContainer">
       <div id="cateringItems">
-        @foreach(array_chunk($cateringItems->all(), 3, true) as $chunk)
+        @foreach(array_chunk($groupedItems->all(), 3, true) as $chunk)
           @foreach($chunk as $category => $items)
             <div class="category">
               @php
@@ -99,7 +104,7 @@ function updateTotalCount() {
   document.getElementById('count').innerText = total;
 }
 
-// Wuantity changes and update total count for plus and minus button
+// Quantity changes and update total count for plus and minus button
 function handleQuantityChange() {
   updateTotalCount();
 }

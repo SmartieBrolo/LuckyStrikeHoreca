@@ -16,32 +16,45 @@
       </div>
   <header class="sticky">
     <div class="headerLeft"><a href="/" id="backButton">Terug</a></div>
-    <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
+    <div class="headerCenter">{{ $user->name }} - Baan {{ $userConnect->unique_identifier }}</div>
     <div class="headerRight"><a id="orderButton">Verzend bestelling</a></div>
   </header>
   
   <main>
     <h1>Bestelling overzicht</h1>
     <br>
-      <table>
-        <thead>
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Prijs (p/s)</th>
+          <th>Aantal</th>
+          <th class='price'>Totaal prijs</th>
+        </tr>
+      </thead>
+      <tbody>
+        @php
+        $totalPrice = 0;
+        @endphp
+        @dd($orderData);
+        {{-- @foreach ($orderJSON as $key => $item)
+          @php
+          $totalItemPrice = $item['price'] * $item['quantity'];
+          $totalPrice += $totalItemPrice;
+          @endphp
           <tr>
-            <th>Item</th>
-            <th>Prijs (p/s)</th>
-            <th>Aantal</th>
-            <th class='price'>Totaal prijs</th>
+            <td>{{ $item['item'] }}</td>
+            <td>€{{ number_format($item['price'], 2) }}</td>
+            <td>{{ $item['quantity'] }}</td>
+            <td class='price'>€{{ number_format($totalItemPrice, 2) }}</td>
           </tr>
-        </thead>
-        <tbody id="orderTable">
-          <!-- JavaScript table -->
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3" class="noBottomLine">Totaal:</td>
-            <td class="price noBottomLine" id="totalPrice">0.00</td>
-          </tr>
-        </tfoot>
-      </table>
+        @endforeach --}}
+        <tr>
+          <td colspan="3" class="noBottomLine">Totaal:</td>
+          <td class="price noBottomLine" id="totalPrice">€{{ number_format($totalPrice, 2) }}</td>
+        </tr>
+      </tbody>
+    </table>
     
     
   </main>
@@ -49,29 +62,7 @@
   // Retrieve order data from localStorage
   const orderJSON = localStorage.getItem('orderData');
   const orderData = JSON.parse(orderJSON);
-
-  const orderTable = document.getElementById('orderTable');
-    let totalPrice = 0;
-
-    for (const key in orderData) {
-      if (orderData.hasOwnProperty(key)) {
-        const item = orderData[key];
-        const totalItemPrice = item.price * item.quantity;
-        totalPrice += totalItemPrice;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${item.item}</td>
-          <td>€${item.price.toFixed(2)}</td>
-          <td>${item.quantity}</td>
-          <td class='price'>€${totalItemPrice.toFixed(2)}</td>
-        `;
-        orderTable.appendChild(row);
-      }
-    }
-
-    document.getElementById('totalPrice').textContent = `€${totalPrice.toFixed(2)}`;
-
+  console.log(orderData);
 
     document.getElementById('orderButton').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default behavior of the "Sent Order" button

@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['assign.unique.identifier'])->group(function () {
-    Route::get('/', [CateringController::class, 'getCateringItems']);
-    Route::get('/order', [CateringController::class, 'getOrderWithUser']);
+    Route::get('/', [CateringController::class, 'showHorecaPage'])->name('horeca.page');
+    Route::post('/order', [CateringController::class, 'showOrderPage'])->name('order');
 });
+
+// Route::post('/submit-order', [CateringController::class, 'submitOrder'])->name('submit.order');
 

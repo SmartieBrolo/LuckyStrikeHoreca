@@ -58,10 +58,13 @@
 /* Style for the "Order Now" button */
 #orderButton {
     cursor: pointer;
-    color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
+    color: #fff;
+    background-color: #D2AE39;
+
+      
 }
 
 @media (max-width: 2000px) {
