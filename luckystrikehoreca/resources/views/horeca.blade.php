@@ -15,7 +15,13 @@
 
     <div class="headerLeft"></div>
     <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
-    <div class="headerRight"><a onclick="submitOrder()">Naar bestelling(<span id="count">0</span>)</a></div>
+    <div class="headerRight">
+      <form method="post" action="{{ route('submit_order') }}">
+        @csrf
+        <input type="hidden" name="orderData" id="orderDataField">
+        <button id="orderButton">Naar bestelling(<span id="count">0</span>)</button>
+      </form>
+    </div>
   </header>
   
   <main>
@@ -88,8 +94,9 @@ function updateOrderData(itemId, itemName, itemPrice, quantity) {
 // Sent orderJSON to next page
 function submitOrder() {
   const orderJSON = JSON.stringify(orderData);
-  localStorage.setItem('orderData', orderJSON);
-  window.location.href = '/order';
+  document.getElementById('orderDataField').value = orderJSON;
+  // Submit the form
+  document.querySelector('form').submit();
 }
 
 // Update count based on quantity
@@ -104,7 +111,7 @@ function updateTotalCount() {
   document.getElementById('count').innerText = total;
 }
 
-// Wuantity changes and update total count for plus and minus button
+// Quantity changes and update total count for plus and minus button
 function handleQuantityChange() {
   updateTotalCount();
 }

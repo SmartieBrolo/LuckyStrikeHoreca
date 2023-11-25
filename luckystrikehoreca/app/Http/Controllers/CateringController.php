@@ -8,7 +8,7 @@ use App\Models\LoginUserConnect;
 use App\Models\Reservation;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class CateringController extends Controller
 {
@@ -20,32 +20,30 @@ class CateringController extends Controller
         $cateringItems = CateringItem::all();
         // Fetch the unique_identifier from the store you get the second you enter the site
         $uniqueIdentifier = session('unique_identifier');
-        
         // Get the database object with this number and the date of today
         $userConnect = LoginUserConnect::where('unique_identifier', $uniqueIdentifier)
-        ->orderBy('date', 'desc')
-        ->first();
+            ->orderBy('date', 'desc')
+            ->first();
         // Group items by category
         $groupedItems = $cateringItems->groupBy('category');
         $reservation = $this->getCurrentUser($uniqueIdentifier);
-        
 
         if (!$reservation) {
             $user = new User();
             $user->name = 'Empty';
-        }else{
+        } else {
             $user = $reservation->user;
         }
 
-        return view('horeca')->with('cateringItems', $groupedItems)->with('laneId',$userConnect->unique_identifier)->with('user',$user);
+        return view('horeca')->with('cateringItems', $groupedItems)->with('laneId', $userConnect->unique_identifier)->with('user', $user);
     }
 
     private function getCurrentUser($id)
     {
         $lane = Lane::find($id);
         $reservation = Reservation::where('begin_time', '<=', Carbon::now())
-        ->where('end_time', '>=', Carbon::now())->where('lane_id','=',$lane->id)
-        ->get()->first();
+            ->where('end_time', '>=', Carbon::now())->where('lane_id', '=', $lane->id)
+            ->get()->first();
 
 
         return $reservation;
@@ -55,24 +53,42 @@ class CateringController extends Controller
     {
         // Set the time zone to 'Europe/Amsterdam'
         date_default_timezone_set('Europe/Amsterdam');
+
         // Fetch the unique_identifier from the store you get the second you enter the site
         $uniqueIdentifier = session('unique_identifier');
-        
+
         // Get the database object with this number and the date of today
         $userConnect = LoginUserConnect::where('unique_identifier', $uniqueIdentifier)
-        ->orderBy('date', 'desc')
-        ->first();
+            ->orderBy('date', 'desc')
+            ->first();
 
         $reservation = $this->getCurrentUser($uniqueIdentifier);
 
         if (!$reservation) {
             $user = new User();
             $user->name = 'Empty';
-        }else{
+        } else {
             $user = $reservation->user;
         }
 
-        return view('order')->with('laneId',$userConnect->unique_identifier)->with('user',$user);
+        // Retrieve the orderData from the session
+        $orderData = session('orderData', []);
+
+        return view('order')
+            ->with('laneId', $userConnect->unique_identifier)
+            ->with('user', $user)
+            ->with('orderData', $orderData); // Pass orderData to the view
     }
 
+    public function submitOrder(Request $request)
+    {
+        // Retrieve the order data from the request
+        $orderData = $request->input('orderData');
+
+        // Store the order data in the session
+        session(['orderData' => $orderData]);
+
+        // Redirect to the order page or perform further actions
+        return redirect('/order');
+    }
 }

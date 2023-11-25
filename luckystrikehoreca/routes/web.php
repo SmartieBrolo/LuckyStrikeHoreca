@@ -18,3 +18,5 @@ Route::middleware(['assign.unique.identifier'])->group(function () {
     Route::get('/', [CateringController::class, 'getCateringItems']);
     Route::get('/order', [CateringController::class, 'getOrderWithUser']);
 });
+
+Route::post('/submit-order', [CateringController::class, 'submitOrder'])->name('submit_order');

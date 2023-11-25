@@ -33,46 +33,33 @@
           </tr>
         </thead>
         <tbody id="orderTable">
-          <!-- JavaScript table -->
+          <?php
+          $totalPrice = 0;
+          if (session()->has('orderData')) {
+              $orderData = session('orderData');
+
+              foreach ($orderData as $item) {
+                  $totalItemPrice = $item['price'] * $item['quantity'];
+                  $totalPrice += $totalItemPrice;
+                  echo "<tr>
+                            <td>{$item['item']}</td>
+                            <td>€{$item['price']}</td>
+                            <td>{$item['quantity']}</td>
+                            <td class='price'>€{$totalItemPrice}</td>
+                        </tr>";
+              }
+          }
+          ?>
         </tbody>
         <tfoot>
           <tr>
             <td colspan="3" class="noBottomLine">Totaal:</td>
-            <td class="price noBottomLine" id="totalPrice">0.00</td>
+            <td class="price noBottomLine" id="totalPrice"><?php echo '€' . number_format($totalPrice, 2); ?></td>
           </tr>
         </tfoot>
       </table>
-    
-    
   </main>
   <script>
-  // Retrieve order data from localStorage
-  const orderJSON = localStorage.getItem('orderData');
-  const orderData = JSON.parse(orderJSON);
-
-  const orderTable = document.getElementById('orderTable');
-    let totalPrice = 0;
-
-    for (const key in orderData) {
-      if (orderData.hasOwnProperty(key)) {
-        const item = orderData[key];
-        const totalItemPrice = item.price * item.quantity;
-        totalPrice += totalItemPrice;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${item.item}</td>
-          <td>€${item.price.toFixed(2)}</td>
-          <td>${item.quantity}</td>
-          <td class='price'>€${totalItemPrice.toFixed(2)}</td>
-        `;
-        orderTable.appendChild(row);
-      }
-    }
-
-    document.getElementById('totalPrice').textContent = `€${totalPrice.toFixed(2)}`;
-
-
     document.getElementById('orderButton').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default behavior of the "Sent Order" button
 
