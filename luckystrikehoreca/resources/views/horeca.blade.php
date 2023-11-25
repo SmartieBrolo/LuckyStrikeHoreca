@@ -7,7 +7,12 @@
   @vite(['resources/css/horeca.css', 'resources/css/header.css'])
 </head>
 <body>
+  
   <header class="sticky">
+    @if ($user->name === "Empty")
+      <div class="headerCenter">Er is op dit moment geen reservering op deze baan: Baan 1</div>
+    @else
+
     <div class="headerLeft"></div>
     <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
     <div class="headerRight"><a onclick="submitOrder()">Naar bestelling(<span id="count">0</span>)</a></div>
@@ -117,5 +122,6 @@ quantityControls.forEach(button => {
 });
 
 </script>
+@endif
 </body>
 </html>
