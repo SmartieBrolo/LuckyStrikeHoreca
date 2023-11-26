@@ -95,7 +95,6 @@ function updateOrderData(itemId, itemName, itemPrice, quantity) {
 function submitOrder() {
   const orderJSON = JSON.stringify(orderData);
   document.getElementById('orderDataField').value = orderJSON;
-  var value = document.getElementById('orderDataField').value;
   // Submit the form
   document.querySelector('form').submit();
 }
