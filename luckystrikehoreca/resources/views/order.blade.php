@@ -33,46 +33,38 @@
           </tr>
         </thead>
         <tbody id="orderTable">
-          <!-- JavaScript table -->
+          @php
+            $totalPrice = 0;
+            if (session()->has('orderData')) {
+              $orderData = session('orderData');
+              $decodedOrderData = json_decode($orderData, true);
+          @endphp
+          @foreach ($decodedOrderData as $item)
+            @php
+              $totalItemPrice = $item['price'] * $item['quantity'];
+              $totalPrice += $totalItemPrice;
+              $formattedPrice = number_format($item['price'], 2);
+            @endphp
+          <tr>
+            <td>{{ $item['item'] }}</td>
+            <td>€{{ $formattedPrice }}</td>
+            <td>{{ $item['quantity'] }}</td>
+            <td class="price">€{{ number_format($totalItemPrice, 2) }}</td>
+          </tr>
+          @endforeach
+        @php
+        }
+        @endphp
         </tbody>
         <tfoot>
           <tr>
             <td colspan="3" class="noBottomLine">Totaal:</td>
-            <td class="price noBottomLine" id="totalPrice">0.00</td>
+            <td class="price noBottomLine" id="totalPrice">@php echo '€' . number_format($totalPrice, 2); @endphp</td>
           </tr>
         </tfoot>
       </table>
-    
-    
   </main>
   <script>
-  // Retrieve order data from localStorage
-  const orderJSON = localStorage.getItem('orderData');
-  const orderData = JSON.parse(orderJSON);
-
-  const orderTable = document.getElementById('orderTable');
-    let totalPrice = 0;
-
-    for (const key in orderData) {
-      if (orderData.hasOwnProperty(key)) {
-        const item = orderData[key];
-        const totalItemPrice = item.price * item.quantity;
-        totalPrice += totalItemPrice;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${item.item}</td>
-          <td>€${item.price.toFixed(2)}</td>
-          <td>${item.quantity}</td>
-          <td class='price'>€${totalItemPrice.toFixed(2)}</td>
-        `;
-        orderTable.appendChild(row);
-      }
-    }
-
-    document.getElementById('totalPrice').textContent = `€${totalPrice.toFixed(2)}`;
-
-
     document.getElementById('orderButton').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default behavior of the "Sent Order" button
 

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CateringController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,14 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('horeca');
-// });
-
-
-
 Route::middleware(['assign.unique.identifier'])->group(function () {
     Route::get('/', [CateringController::class, 'getCateringItems']);
     Route::get('/order', [CateringController::class, 'getOrderWithUser']);
 });
 
+Route::post('/submit-order', [CateringController::class, 'submitOrder'])->name('submit_order');
