@@ -77,18 +77,16 @@ class CateringController extends Controller
         return view('order')
             ->with('laneId', $userConnect->unique_identifier)
             ->with('user', $user)
-            ->with('orderData', $orderData); // Pass orderData to the view
+            ->with('orderData', $orderData);
     }
 
     public function submitOrder(Request $request)
     {
         // Retrieve the order data from the request
         $orderData = $request->input('orderData');
-
         // Store the order data in the session
         session(['orderData' => $orderData]);
 
-        // Redirect to the order page or perform further actions
         return redirect('/order');
     }
 }

@@ -16,10 +16,10 @@
     <div class="headerLeft"></div>
     <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
     <div class="headerRight">
-      <form method="post" action="{{ route('submit_order') }}">
+      <form method="POST" action="{{ route('submit_order') }}">
         @csrf
         <input type="hidden" name="orderData" id="orderDataField">
-        <button id="orderButton">Naar bestelling(<span id="count">0</span>)</button>
+        <button type="submit" id="orderButton" onclick="submitOrder()">Naar bestelling(<span id="count">0</span>)</button>
       </form>
     </div>
   </header>
@@ -95,6 +95,7 @@ function updateOrderData(itemId, itemName, itemPrice, quantity) {
 function submitOrder() {
   const orderJSON = JSON.stringify(orderData);
   document.getElementById('orderDataField').value = orderJSON;
+  var value = document.getElementById('orderDataField').value;
   // Submit the form
   document.querySelector('form').submit();
 }

@@ -37,15 +37,17 @@
           $totalPrice = 0;
           if (session()->has('orderData')) {
               $orderData = session('orderData');
-
-              foreach ($orderData as $item) {
+              $decodedOrderData = json_decode($orderData, true);
+              foreach ($decodedOrderData as $item) {
                   $totalItemPrice = $item['price'] * $item['quantity'];
                   $totalPrice += $totalItemPrice;
+                  // Format prices using number_format to display at least 2 decimal places
+                  $formattedPrice = number_format($item['price'], 2);
                   echo "<tr>
                             <td>{$item['item']}</td>
-                            <td>€{$item['price']}</td>
+                            <td>€{$formattedPrice}</td>
                             <td>{$item['quantity']}</td>
-                            <td class='price'>€{$totalItemPrice}</td>
+                            <td class='price'>€" . number_format($totalItemPrice, 2) . "</td>
                         </tr>";
               }
           }
