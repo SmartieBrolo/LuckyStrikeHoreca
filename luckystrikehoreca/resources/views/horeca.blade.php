@@ -4,15 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Overview</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
   @vite(['resources/css/horeca.css', 'resources/css/header.css'])
 </head>
 <body>
-  
+  @if(session('success'))
+  <script>    
+    Swal.fire({
+      title: 'Bedankt voor uw bestelling',
+      text: 'Het wordt zo snel mogelijk gebracht.',
+      icon: 'success',
+      background: '#fff', 
+      showCancelButton: false,
+      confirmButtonColor: '#D2AE39',
+      confirmButtonText: 'Verder', 
+    });
+</script>
+  @endif
   <header class="sticky">
     @if ($user->name === "Empty")
       <div class="headerCenter">Er is op dit moment geen reservering op deze baan: Baan 1</div>
     @else
-
     <div class="headerLeft"></div>
     <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
     <div class="headerRight">

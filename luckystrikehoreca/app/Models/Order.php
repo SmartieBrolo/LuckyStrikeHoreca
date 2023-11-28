@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $table = 'order';
-    public function cateringItems()
+    public function serves()
     {
-        return $this->belongsToMany(CateringItem::class, 'order_catering_item')->withPivot('quantity')->withTimestamps();
+        return $this->hasMany(serve::class, 'id', 'order_id');
     }
 
     public function reservation()

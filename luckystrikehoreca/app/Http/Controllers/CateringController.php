@@ -7,6 +7,7 @@ use App\Models\Lane;
 use App\Models\LoginUserConnect;
 use App\Models\Reservation;
 use App\Models\User;
+use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -88,5 +89,20 @@ class CateringController extends Controller
         session(['orderData' => $orderData]);
 
         return redirect('/order');
+    }
+
+    public function store(Request $request)
+    {
+        // Get the submitted order data
+        $orderData = $request->all(); // Adjust this according to your form structure
+
+        // Store the order data in the database
+        $order = Order::create([
+            'data' => json_encode($orderData), // Store the order data as needed
+            // Other fields as necessary
+        ]);
+
+        // Redirect back or to a success page
+        return redirect()->route('success.page')->with('order_id', $order->id);
     }
 }
