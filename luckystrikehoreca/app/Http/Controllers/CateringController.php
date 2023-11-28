@@ -41,6 +41,9 @@ class CateringController extends Controller
 
     private function getCurrentUser($id)
     {
+        // Set the time zone to 'Europe/Amsterdam'
+        date_default_timezone_set('Europe/Amsterdam');
+
         $lane = Lane::find($id);
         $reservation = Reservation::where('begin_time', '<=', Carbon::now())
             ->where('end_time', '>=', Carbon::now())->where('lane_id', '=', $lane->id)
@@ -52,9 +55,6 @@ class CateringController extends Controller
 
     public function getOrderWithUser()
     {
-        // Set the time zone to 'Europe/Amsterdam'
-        date_default_timezone_set('Europe/Amsterdam');
-
         // Fetch the unique_identifier from the store you get the second you enter the site
         $uniqueIdentifier = session('unique_identifier');
 
@@ -85,6 +85,7 @@ class CateringController extends Controller
     {
         // Retrieve the order data from the request
         $orderData = $request->input('orderData');
+
         // Store the order data in the session
         session(['orderData' => $orderData]);
 
@@ -94,15 +95,14 @@ class CateringController extends Controller
     public function store(Request $request)
     {
         // Get the submitted order data
-        $orderData = $request->all(); // Adjust this according to your form structure
+        $orderData = $request->all();
+        $totalPrice = $request->totalPrice;
 
         // Store the order data in the database
         $order = Order::create([
-            'data' => json_encode($orderData), // Store the order data as needed
-            // Other fields as necessary
+            'data' => json_encode($orderData), 
         ]);
 
-        // Redirect back or to a success page
         return redirect()->route('success.page')->with('order_id', $order->id);
     }
 }

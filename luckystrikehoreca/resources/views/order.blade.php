@@ -53,6 +53,7 @@
         </tbody>
         <tfoot>
           <tr>
+            <input type="hidden" name="totalPrice" value="{{ $totalPrice }}">
             <td colspan="3" class="noBottomLine">Totaal:</td>
             <td class="price noBottomLine" id="totalPrice">@php echo '€' . number_format($totalPrice, 2); @endphp</td>
           </tr>

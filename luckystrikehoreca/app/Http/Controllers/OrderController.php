@@ -16,6 +16,9 @@ class OrderController extends Controller
 {
     private function getCurrentUser($id)
     {
+        // Set the time zone to 'Europe/Amsterdam'
+        date_default_timezone_set('Europe/Amsterdam');
+        
         $lane = Lane::find($id);
         $reservation = Reservation::where('begin_time', '<=', Carbon::now())
             ->where('end_time', '>=', Carbon::now())->where('lane_id', '=', $lane->id)
@@ -26,9 +29,8 @@ class OrderController extends Controller
     }
     public function store(Request $request)
     {
-        // $orderItems = $request->input('orderData'), true);
         $orderData = json_decode(session('orderData', []));
-        $totalPrice = 0;
+        $totalPrice = $request->input('totalPrice');
 
 
         $uniqueIdentifier = session('unique_identifier');
@@ -37,11 +39,10 @@ class OrderController extends Controller
 
         $order = Order::where('reservation_id', $reservation->id)->first();
 
-        // Assuming serves() represents a relationship in Order model
         if ($order) {
             $serve = $order->serves()->create([
                 'is_served' => false,
-                'total_price_catering' => 100,
+                'total_price_catering' => $totalPrice,
                 'order_id' => $order->id,
             ]);
         }
