@@ -4,19 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Overview</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
   @vite(['resources/css/horeca.css', 'resources/css/header.css'])
 </head>
 <body>
-  
+  @if(session('success'))
+  <script>    
+    Swal.fire({
+      title: 'Bedankt voor uw bestelling',
+      text: 'Het wordt zo snel mogelijk gebracht.',
+      icon: 'success',
+      background: '#fff', 
+      showCancelButton: false,
+      confirmButtonColor: '#D2AE39',
+      confirmButtonText: 'Verder', 
+    });
+</script>
+  @endif
   <header class="sticky">
     @if ($user->name === "Empty")
       <div class="headerCenter">Er is op dit moment geen reservering op deze baan: Baan 1</div>
     @else
-
     <div class="headerLeft"></div>
     <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
     <div class="headerRight">
-      <form method="POST" action="{{ route('submit_order') }}">
+      <form method="POST" action="{{ route('submit.order') }}">
         @csrf
         <input type="hidden" name="orderData" id="orderDataField">
         <button type="submit" id="orderButton" onclick="submitOrder()">Naar bestelling(<span id="count">0</span>)</button>
@@ -37,7 +49,7 @@
               @foreach($items as $item)
                 <div class="item" 
                     data-item-name="{{ $item->name }}" 
-                    data-item-price="{{ number_format($item->price, 2, '.', '') }}"
+                    data-item-price="{{ sprintf("%.2f", $item->price) }}"
                     data-item-id="{{ $item->id }}">
                     <div>
                         <span>{{ $item->name }} €{{ sprintf("%.2f", $item->price) }}</span>
