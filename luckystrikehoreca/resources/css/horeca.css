@@ -1,3 +1,8 @@
+/* Smooth scroll */ 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Add some basic styling for better visualization */
 .cateringContainer {
     margin: 60px 0 0 0;
