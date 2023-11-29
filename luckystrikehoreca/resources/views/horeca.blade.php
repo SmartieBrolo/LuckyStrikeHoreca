@@ -86,6 +86,7 @@
   </main>
 <script>
 const orderData = {};
+let totalCount = 0; 
 
 // Plus button
 function increaseQuantity(itemId) {
@@ -105,7 +106,7 @@ function decreaseQuantity(itemId) {
   if (currentValue > 0) {
     inputField.value = currentValue - 1;
     
-    const item = document.getElementByClassName(`item`);
+    const item = document.querySelector('.item');
     const itemName = item.dataset.itemName;
     const itemPrice = parseFloat(item.dataset.itemPrice);
     updateOrderData(itemId, itemName, itemPrice, inputField.value);
@@ -120,24 +121,41 @@ function updateOrderData(itemId, itemName, itemPrice, quantity) {
   orderData[itemId].quantity = parseInt(quantity, 10);
 }
 
-// Sent orderJSON to next page
 function submitOrder() {
-  const orderJSON = JSON.stringify(orderData);
-  document.getElementById('orderDataField').value = orderJSON;
-  // Submit the form
-  document.querySelector('form').submit();
+    
+    
+    // If no items are selected, show a SweetAlert message
+    const selectedItems = Object.values(orderData).filter(item => item.quantity > 0);
+
+    if (selectedItems.length === 0) {
+      // Make sure it doesn't send you to the orderpage
+      event.preventDefault();
+    Swal.fire({
+      title: 'Minimaal één horeca item nodig',
+      text: 'Selecteer alstublieft minimaal één item om naar de orderpagina te gaan.',
+      icon: 'warning',
+      confirmButtonColor: '#D2AE39',
+      confirmButtonText: 'OK',
+      background: '#fff'
+    });
+  } else {
+    const orderJSON = JSON.stringify(selectedItems);
+    document.getElementById('orderDataField').value = orderJSON;
+    // Submit the form
+    document.querySelector('form').submit();
+  }
 }
 
 // Update count based on quantity
 function updateTotalCount() {
-  let total = 0;
+  totalCount = 0;
   const inputs = document.querySelectorAll('.quantityControls input');
 
   inputs.forEach(input => {
-    total += parseInt(input.value);
+    totalCount += parseInt(input.value);
   });
 
-  document.getElementById('count').innerText = total;
+  document.getElementById('count').innerText = totalCount;
 }
 
 // Quantity changes and update total count for plus and minus button
