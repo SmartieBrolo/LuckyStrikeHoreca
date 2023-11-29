@@ -25,7 +25,13 @@
     @if ($user->name === "Empty")
       <div class="headerCenter">Er is op dit moment geen reservering op deze baan: Baan {{ $laneId }}</div>
     @else
-    <div class="headerLeft"></div>
+    <div class="headerLeft">
+      <div class="menu-btn" onclick="toggleMenu()">
+        <div class="icon"></div>
+        <div class="icon"></div>
+        <div class="icon"></div>
+      </div>
+    </div>
     <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
     <div class="headerRight">
       <form method="POST" action="{{ route('submit.order') }}">
@@ -33,6 +39,17 @@
         <input type="hidden" name="orderData" id="orderDataField">
         <button type="submit" id="orderButton" onclick="submitOrder()">Naar bestelling(<span id="count">0</span>)</button>
       </form>
+    </div>
+    <div class="menu-links">
+      <a href="#">Naar boven</a>
+      @foreach(array_chunk($cateringItems->all(), 3, true) as $chunk)
+        @foreach($chunk as $category => $items)
+      @php
+        $categoryObject = json_decode($category);
+      @endphp
+        <a href="#{{ $categoryObject->name }}">{{ $categoryObject->name }}</a>
+        @endforeach
+      @endforeach
     </div>
   </header>
   
@@ -45,7 +62,7 @@
               @php
                 $categoryObject = json_decode($category);
               @endphp
-              <h2>{{ $categoryObject->name }}</h2>
+              <h2 class="categoryArea" id="{{ $categoryObject->name }}">{{ $categoryObject->name }}</h2>
               @foreach($items as $item)
                 <div class="item" 
                     data-item-name="{{ $item->name }}" 
@@ -140,6 +157,11 @@ quantityControls.forEach(button => {
   button.addEventListener('click', handleQuantityChange);
 });
 
+// Hamburger 
+function toggleMenu() {
+  const menu = document.querySelector('.menu-links');
+  menu.classList.toggle('show');
+}
 </script>
 @endif
 </body>

@@ -51,6 +51,10 @@ header {
   margin-left: 20px;
 }
 
+.headerLeft p {
+  margin-left: 10px;
+}
+
 .headerRight {
   text-align: right;
   margin-right: 20px;
@@ -79,4 +83,52 @@ header {
     align-items: center;
     justify-content: center;
     margin-top: 20px; /* Adjust margin top as needed */
+  }
+
+  /* Styling for the hamburger menu */
+  .menu-btn {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    text-decoration: none;
+    color: #d5d5d5;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 2;
+  }
+  
+  /* Hamburger icon styles */
+  .menu-btn .icon {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 5px 0;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* Menu Links */
+  .menu-links {
+    background-color: #333;
+    margin-top: 50px;
+    position: absolute;
+    left: 0px;
+    top: 20px;
+    display: none;
+    height: auto;
+    z-index: 1;
+    padding: 20px;
+  }
+
+  .menu-links a {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  /* Styles for responsive menu */
+  @media (max-width: 2000px) {
+    .menu-links.show {
+      display: block;
+    }
   }
