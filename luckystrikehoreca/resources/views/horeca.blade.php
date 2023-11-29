@@ -28,7 +28,7 @@
     <div class="headerLeft"></div>
     <div class="headerCenter">{{ $user->name }} - Baan {{ $laneId }}</div>
     <div class="headerRight">
-      <form method="POST" action="{{ route('submit_order') }}">
+      <form method="POST" action="{{ route('submit.order') }}">
         @csrf
         <input type="hidden" name="orderData" id="orderDataField">
         <button type="submit" id="orderButton" onclick="submitOrder()">Naar bestelling(<span id="count">0</span>)</button>
@@ -49,7 +49,7 @@
               @foreach($items as $item)
                 <div class="item" 
                     data-item-name="{{ $item->name }}" 
-                    data-item-price="{{ number_format($item->price, 2, '.', '') }}"
+                    data-item-price="{{ sprintf("%.2f", $item->price) }}"
                     data-item-id="{{ $item->id }}">
                     <div>
                         <span>{{ $item->name }} €{{ sprintf("%.2f", $item->price) }}</span>

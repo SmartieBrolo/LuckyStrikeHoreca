@@ -38,13 +38,13 @@
             @php
               $totalItemPrice = $item['price'] * $item['quantity'];
               $totalPrice += $totalItemPrice;
-              $formattedPrice = number_format($item['price'], 2);
+              $formattedPrice = sprintf("%.2f", $item['price']);
             @endphp
           <tr>
             <td>{{ $item['item'] }}</td>
             <td>€{{ $formattedPrice }}</td>
             <td>{{ $item['quantity'] }}</td>
-            <td class="price">€{{ number_format($totalItemPrice, 2) }}</td>
+            <td class="price">€{{ sprintf("%.2f", $totalItemPrice,) }}</td>
           </tr>
           @endforeach
         @php
@@ -55,7 +55,7 @@
           <tr>
             <input type="hidden" name="totalPrice" value="{{ $totalPrice }}">
             <td colspan="3" class="noBottomLine">Totaal:</td>
-            <td class="price noBottomLine" id="totalPrice">@php echo '€' . number_format($totalPrice, 2); @endphp</td>
+            <td class="price noBottomLine" id="totalPrice">@php echo '€' . sprintf("%.2f", $totalPrice); @endphp</td>
           </tr>
         </tfoot>
       </table>

@@ -89,14 +89,13 @@ class CateringController extends Controller
         // Store the order data in the session
         session(['orderData' => $orderData]);
 
-        return redirect('/order');
+        return redirect('order');
     }
 
     public function store(Request $request)
     {
         // Get the submitted order data
         $orderData = $request->all();
-        $totalPrice = $request->totalPrice;
 
         // Store the order data in the database
         $order = Order::create([
