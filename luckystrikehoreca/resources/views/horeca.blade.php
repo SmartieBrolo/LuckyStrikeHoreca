@@ -122,10 +122,14 @@ function updateOrderData(itemId, itemName, itemPrice, quantity) {
 }
 
 function submitOrder() {
-  if (totalCount === 0) {
-    // Make sure it doesn't send you to the orderpage
-    event.preventDefault();
+    
+    
     // If no items are selected, show a SweetAlert message
+    const selectedItems = Object.values(orderData).filter(item => item.quantity > 0);
+
+    if (selectedItems.length === 0) {
+      // Make sure it doesn't send you to the orderpage
+      event.preventDefault();
     Swal.fire({
       title: 'Minimaal één horeca item nodig',
       text: 'Selecteer alstublieft minimaal één item om naar de orderpagina te gaan.',
@@ -135,7 +139,7 @@ function submitOrder() {
       background: '#fff'
     });
   } else {
-    const orderJSON = JSON.stringify(orderData);
+    const orderJSON = JSON.stringify(selectedItems);
     document.getElementById('orderDataField').value = orderJSON;
     // Submit the form
     document.querySelector('form').submit();
