@@ -10,7 +10,7 @@
   
   <header class="sticky">
     @if ($user->name === "Empty")
-      <div class="headerCenter">Er is op dit moment geen reservering op deze baan: Baan 1</div>
+      <div class="headerCenter">Er is op dit moment geen reservering op deze baan: Baan {{ $laneId }}</div>
     @else
 
     <div class="headerLeft"></div>
