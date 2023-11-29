@@ -105,7 +105,7 @@ function decreaseQuantity(itemId) {
   if (currentValue > 0) {
     inputField.value = currentValue - 1;
     
-    const item = document.getElementByClassName(`item`);
+    const item = document.querySelector('.item');
     const itemName = item.dataset.itemName;
     const itemPrice = parseFloat(item.dataset.itemPrice);
     updateOrderData(itemId, itemName, itemPrice, inputField.value);
