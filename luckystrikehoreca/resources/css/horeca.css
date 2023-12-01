@@ -1,88 +1,88 @@
-/* Smooth scroll */ 
+/* Smooth scroll */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* Add some basic styling for better visualization */
 .cateringContainer {
-    margin: 60px 0 0 0;
-    font-family: "Lato", sans-serif;
-    background: transparent;
+  margin: 60px 0 0 0;
+  font-family: "Lato", sans-serif;
+  background: transparent;
 }
 
 #cateringItems {
-    color: #fff;
-    margin: 0px 40px 0px 40px;
-    padding: 15px 0px;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  color: #fff;
+  margin: 0px 40px 0px 40px;
+  padding: 15px 0px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .category {
-    border: 1px solid #3f3f3f;
-    padding: 10px;
-    background-color: #292929c0;
-    flex: 0 0 calc(33.333% - 20px); /* Three items per row */
-    margin-bottom: 10px;
-    width: 100%;
+  border: 1px solid #3f3f3f;
+  padding: 10px;
+  background-color: #292929c0;
+  flex: 0 0 calc(33.333% - 20px); /* Three items per row */
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .categoryArea {
-    scroll-margin-top: 100px;
+  scroll-margin-top: 100px;
 }
 
 /* Style for the plus and minus buttons */
 .item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .quantityControls {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .quantityControls button {
-    cursor: pointer;
-    background-color: #D2AE39;
-    color: rgb(255, 255, 255);
-    border: none;
-    margin: 5px;
-    border-radius: 5px;
-    height: 50px;
-    width: 50px;
+  cursor: pointer;
+  background-color: #d2ae39;
+  color: rgb(255, 255, 255);
+  border: none;
+  margin: 5px;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
 }
 
 /* Style to adjust the width of the input fields */
 .quantityControls input {
-    width: 50px;
-    margin: 5px;
-    height: 50px;
-    text-align: center;
+  width: 50px;
+  margin: 5px;
+  height: 50px;
+  text-align: center;
 }
 
 /* Style for the "Order Now" button */
 #orderButton {
-    cursor: pointer;
-    color: white;
-    border: none;
-    background-color: #D2AE39;
-    padding: 10px;
-    border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  background-color: #d2ae39;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 @media (max-width: 2000px) {
-    .category {
-        float: left;
-        flex: 1 1 calc(50% - 20px); /* Two items per row */
-    }
+  .category {
+    float: left;
+    flex: 1 1 calc(50% - 20px); /* Two items per row */
+  }
 }
 
 @media (max-width: 800px) {
-    .category {
-        flex: 1 100%; /* Single item per row */
-    }
+  .category {
+    flex: 1 100%; /* Single item per row */
+  }
 }
