@@ -1,21 +1,21 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    background-image: url('../../public/img/BowlingBarBlur.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #fff;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url("../../public/img/BowlingBarBlur.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #fff;
+}
 
-  main {
-    margin-top: 70px;
-  }
+main {
+  margin-top: 70px;
+}
 
-  /* Sticky header class */
+/* Sticky header class */
 .sticky {
   position: fixed;
   top: 0;
@@ -23,7 +23,7 @@
   z-index: 1000;
 }
 
-  /* CSS for the header */
+/* CSS for the header */
 header {
   display: flex;
   justify-content: space-between;
@@ -59,76 +59,76 @@ header {
   text-align: right;
   margin-right: 20px;
 }
-  
-  h1 {
-    font-size: 1.5em;
-  }
 
-  a {
-    text-decoration: none;
-    color: #fff;
-    background-color: #D2AE39;
-    padding: 10px;
-    border-radius: 5px;
-  }
+h1 {
+  font-size: 1.5em;
+}
 
-  #backButton {
-    background-color: none;
-  }
-  
-  /* Center the table and button */
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px; /* Adjust margin top as needed */
-  }
+a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #d2ae39;
+  padding: 10px;
+  border-radius: 5px;
+}
 
-  /* Styling for the hamburger menu */
-  .menu-btn {
+#backButton {
+  background-color: none;
+}
+
+/* Center the table and button */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; /* Adjust margin top as needed */
+}
+
+/* Styling for the hamburger menu */
+.menu-btn {
+  display: block;
+  cursor: pointer;
+  padding: 10px;
+  text-decoration: none;
+  color: #d5d5d5;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 2;
+}
+
+/* Hamburger icon styles */
+.menu-btn .icon {
+  width: 25px;
+  height: 3px;
+  background-color: #ffffff;
+  margin: 5px 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Menu Links */
+.menu-links {
+  background-color: #333;
+  margin-top: 50px;
+  position: absolute;
+  left: 0px;
+  top: 20px;
+  display: none;
+  height: auto;
+  z-index: 1;
+  padding: 20px;
+}
+
+.menu-links a {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Styles for responsive menu */
+@media (max-width: 2000px) {
+  .menu-links.show {
     display: block;
-    cursor: pointer;
-    padding: 10px;
-    text-decoration: none;
-    color: #d5d5d5;
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    z-index: 2;
   }
-  
-  /* Hamburger icon styles */
-  .menu-btn .icon {
-    width: 25px;
-    height: 3px;
-    background-color: #ffffff;
-    margin: 5px 0;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  /* Menu Links */
-  .menu-links {
-    background-color: #333;
-    margin-top: 50px;
-    position: absolute;
-    left: 0px;
-    top: 20px;
-    display: none;
-    height: auto;
-    z-index: 1;
-    padding: 20px;
-  }
-
-  .menu-links a {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-
-  /* Styles for responsive menu */
-  @media (max-width: 2000px) {
-    .menu-links.show {
-      display: block;
-    }
-  }
+}

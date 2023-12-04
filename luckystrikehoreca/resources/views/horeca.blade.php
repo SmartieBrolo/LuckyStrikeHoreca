@@ -42,46 +42,42 @@
     </div>
     <div class="menu-links">
       <a href="#">Naar boven</a>
-      @foreach(array_chunk($cateringItems->all(), 3, true) as $chunk)
-        @foreach($chunk as $category => $items)
-      @php
-        $categoryObject = json_decode($category);
-      @endphp
-        <a href="#{{ $categoryObject->name }}">{{ $categoryObject->name }}</a>
-        @endforeach
+      @foreach($cateringItems->all() as $category => $items)
+          @php
+              $categoryObject = json_decode($category);
+          @endphp
+          <a href="#{{ $categoryObject->name }}">{{ $categoryObject->name }}</a>
       @endforeach
-    </div>
+  </div>
   </header>
   
   <main>
     <div class="cateringContainer">
       <div id="cateringItems">
-        @foreach(array_chunk($cateringItems->all(), 3, true) as $chunk)
-          @foreach($chunk as $category => $items)
+        @foreach($cateringItems->all() as $category => $items)
             <div class="category">
-              @php
-                $categoryObject = json_decode($category);
-              @endphp
-              <h2 class="categoryArea" id="{{ $categoryObject->name }}">{{ $categoryObject->name }}</h2>
-              @foreach($items as $item)
-                <div class="item" 
-                    data-item-name="{{ $item->name }}" 
-                    data-item-price="{{ sprintf("%.2f", $item->price) }}"
-                    data-item-id="{{ $item->id }}">
-                    <div>
-                        <span>{{ $item->name }} €{{ sprintf("%.2f", $item->price) }}</span>
+                @php
+                    $categoryObject = json_decode($category);
+                @endphp
+                <h2 class="categoryArea" id="{{ $categoryObject->name }}">{{ $categoryObject->name }}</h2>
+                @foreach($items as $item)
+                    <div class="item" 
+                        data-item-name="{{ $item->name }}" 
+                        data-item-price="{{ sprintf("%.2f", $item->price) }}"
+                        data-item-id="{{ $item->id }}">
+                        <div>
+                            <span>{{ $item->name }} €{{ sprintf("%.2f", $item->price) }}</span>
+                        </div>
+                        <div class="quantityControls">
+                            <button onclick="decreaseQuantity('{{ $item->id }}')">-</button>
+                            <input type="number" id="{{ $item->id }}" name="{{ $item->name }}" value="0" min="0">
+                            <button onclick="increaseQuantity('{{ $item->id }}')">+</button>
+                        </div>
                     </div>
-                    <div class="quantityControls">
-                        <button onclick="decreaseQuantity('{{ $item->id }}')">-</button>
-                        <input type="number" id="{{ $item->id }}" name="{{ $item->name }}" value="0" min="0">
-                        <button onclick="increaseQuantity('{{ $item->id }}')">+</button>
-                    </div>
-                </div>
                 @endforeach
             </div>
-          @endforeach
         @endforeach
-      </div>
+    </div>
     </div>
   </main>
 <script>
