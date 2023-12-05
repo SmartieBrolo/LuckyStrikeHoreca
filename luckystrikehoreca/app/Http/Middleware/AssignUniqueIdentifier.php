@@ -37,8 +37,19 @@ class AssignUniqueIdentifier
 
     private function generateUniqueIdentifier()
     {
-        // Get the current counter value from the session
-        $counter = Session::get('counter', 0);
+        $today = now()->toDateString(); // Get today's date in the format 'Y-m-d'
+
+        // Get ident out of database
+        $latestRecord = LoginUserConnect::whereDate('date', $today)
+            ->orderBy('unique_identifier', 'desc')
+            ->first();
+        if(!$latestRecord){
+            $counter = 0;
+        }else{
+            // Get the current counter value from the session
+            $counter = $latestRecord->unique_identifier;
+        }
+        
 
         // Increment the counter for the next unique identifier
         $counter++;
